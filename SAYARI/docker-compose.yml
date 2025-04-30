@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: sayari
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./db/Schema.sql:/docker-entrypoint-initdb.d/1-schema.sql:ro
+    ports:
+      - '5432:5432'
+
+  api:
+    build: ./api
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://dev:dev@db:5432/sayari
+      PORT: 4000
+    ports:
+      - '4000:4000' 
+    command: npm run dev
+
+volumes:
+  db-data:

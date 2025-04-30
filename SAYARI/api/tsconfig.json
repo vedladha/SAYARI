@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "target": "es2020",
+      "module": "commonjs",
+      "strict": true,
+      "outDir": "dist",
+      "rootDir": "src",
+      "typeRoots": [
+        "node_modules/@types"
+      ]
+    },
+    "include": ["src"]
+  }
